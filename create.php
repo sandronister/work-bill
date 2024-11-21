@@ -1,32 +1,16 @@
 <?php
 
-require_once 'utils/db.php';
-require_once 'dto/order.dto.php';
-require_once 'utils/order.mapper.php';
-require_once 'repository/order.php';
+require_once "di/order.php";
 $error="";
+
+
 try{
-    $conn = getDb();
+    $controller = OrderDI::create();
+    $controller->create_order();
 } catch (Exception $e){
-    $error= "<span class=\"error\">Erro ao conectar com o banco de dados</span>"; 
+    $error= "<span class=\"error\">$e</span>"; 
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $order = new OrderDTO();
-    $order->init($_POST);
-
-    try{
-        $entity=OrderMapper::DTOToEntity($order);
-        $entity->valid();
-        $repository=new OrderRepository($conn);
-        $repository->save($entity);
-    }catch(Exception $e){
-        $error= "<span class=\"error\">$e</span>"; 
-    }
-  
-}
-
-$conn->close();
 ?>
 
 <!doctype html>
@@ -49,13 +33,11 @@ $conn->close();
 
     <form method="post" action="create.php">
         <fieldset class="grupo">
-                <!-- Campo do nome com legenda "nome" e css de classe "campo" -->
                 <div class="campo">
                     <label for="nome"><strong>Nome</strong></label>
                     <input type="text" name="nome" id="nome" required>
                 </div>
 
-                <!-- Campo do sobrenome com legenda "sobrenome" e css de classe "campo" -->
                 <div class="campo">
                     <label for="sobrenome"><strong>Sobrenome</strong></label>
                     <input type="text" name="sobrenome" id="sobrenome" required>
