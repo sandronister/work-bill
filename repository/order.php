@@ -11,9 +11,49 @@ class OrderRepository{
     }
 
     public function save(OrderEntity $order){
-        $sql = "INSERT INTO fichas_trabalho (nome_cliente, tipo_instrumento, descricao_servico, data_inicio, data_termino)
-            VALUES ('$order->nome', '$order->tipo_instrumento', '$order->descricao', '$order->data_inicio', '$order->data_termino')";
+        try{
+            $sql = "INSERT INTO orders (nome_cliente, tipo_instrumento, descricao_servico, data_inicio, data_termino)
+                VALUES ('$order->nome', '$order->tipo_instrumento', '$order->descricao', '$order->data_inicio', '$order->data_termino')";
 
-        $this->connection->query($sql);
+            $this->connection->query($sql);
+        }catch(Exception $e){
+            throw new Exception("Erro ao salvar a ordem: " . $e->getMessage());
+        }
+    }
+
+    public function delete(OrderEntity $order){
+        try{
+            $sql = "DELETE FROM order WHERE id = $order->id";
+            $this->connection->query($sql);
+        }catch(Exception $e){
+            throw new Exception("Erro ao deletar a ordem: " . $e->getMessage());
+        }
+    }
+
+    public function listAll(){
+        try{
+            $sql = "SELECT * FROM orders";
+            return $this->connection->query($sql);
+        }catch(Exception $e){
+            throw new Exception("Erro ao listas as ordens". $e->getMessage());
+        }
+    }
+
+    public function find(int $id){
+        try{
+            $sql = "SELECT * FROM orders WHERE id = $id";
+            return $this->connection->query($sql);
+        }catch(Exception $e){
+            throw new Exception("Erro ao buscar a ordem". $e->getMessage());
+        }
+    }
+
+    public function update(OrderEntity $order){
+        try{
+            $sql = "UPDATE orders SET nome_cliente = '$order->nome', tipo_instrumento = '$order->tipo_instrumento', descricao_servico = '$order->descricao', data_inicio = '$order->data_inicio', data_termino = '$order->data_termino' WHERE id = $order->id";
+            $this->connection->query($sql);
+        }catch(Exception $e){
+            throw new Exception("Erro ao atualizar a ordem". $e->getMessage());
+        }
     }
 }
