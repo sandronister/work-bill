@@ -8,7 +8,8 @@ try{
     $controller = OrderDI::create();
     $controller->create_order();
 } catch (Exception $e){
-    $error= "<span class=\"error\">$e</span>"; 
+    $message = $e->getMessage();
+    $error= "<span class=\"error\">$message</span>"; 
 }
 
 ?>

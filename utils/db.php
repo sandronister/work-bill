@@ -1,21 +1,20 @@
 <?php
 
+require_once __DIR__ . "/config.php";
 
 function getDb(){
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "nome_do_banco_de_dados";
 
     try{
-        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        $dbConfig= getDBConfig();
+        echo $dbConfig;
+        $conn = new mysqli($dbConfig->servername,
+                        $dbConfig->username,
+                         $dbConfig->password, 
+                         $dbConfig->database);
     } catch (Exception $e){
        throw new Exception('Não foi possível conectar ao banco de dados');
-        
     }
-
-
- 
 
     return $conn;
     
