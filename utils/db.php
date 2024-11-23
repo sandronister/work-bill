@@ -1,20 +1,27 @@
 <?php
 
-require_once __DIR__ . "/config.php";
+
+function getDBConfig(){
+    $config= parse_ini_file(  'config.ini', true);
+    return $config['database'];
+}
 
 function getDb(){
 
     try{
 
         $dbConfig= getDBConfig();
-        $conn = new mysqli($dbConfig->servername,
-                        $dbConfig->username,
-                         $dbConfig->password, 
-                         $dbConfig->database);
+
+        return new mysqli($dbConfig['host'], 
+                         $dbConfig['username'],
+                         $dbConfig['password'], 
+                         $dbConfig['database']);
+
+     
+         
     } catch (Exception $e){
        throw new Exception('Não foi possível conectar ao banco de dados');
     }
 
-    return $conn;
     
 }
