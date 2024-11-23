@@ -1,6 +1,8 @@
 <?php
 
 require_once "repository/order.php";
+require_once "service/order.php";
+require_once "controller/order.php";
 require_once "utils/db.php";
 
 class OrderDI{

@@ -21,6 +21,8 @@ class DbConfig{
 }
 
 function getDBConfig(){
-    $dbConfig = new DbConfig("bill", "123456","luthier","localhost");
+    $dbConfig = new DbConfig("root", "asq2zyx1","luthier","localhost");
     return $dbConfig;
 }
+
+

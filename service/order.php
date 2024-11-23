@@ -1,6 +1,7 @@
 <?php 
 
-require_once __DIR__ . '/../repository/order.php';
+require_once 'repository/order.php';
+require_once 'utils/mapper.php';
 
 class OrderService{
 

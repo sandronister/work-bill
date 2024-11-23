@@ -1,6 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../service/order.php';
+
+require_once 'service/order.php';
+require_once 'dto/order.php';
+
+
+
 
 class OrderController{
 

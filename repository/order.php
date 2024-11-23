@@ -12,8 +12,8 @@ class OrderRepository{
 
     public function save(OrderEntity $order){
         try{
-            $sql = "INSERT INTO orders (nome_cliente, tipo_instrumento, descricao_servico, data_inicio, data_termino)
-                VALUES ('$order->nome', '$order->tipo_instrumento', '$order->descricao', '$order->data_inicio', '$order->data_termino')";
+            $sql = "INSERT INTO orders (nome,sobrenome, tipo, descricao, data_inicio, data_fim)
+                VALUES ('$order->nome', '$order->sobrenome','$order->tipo_instrumento', '$order->descricao', '$order->data_inicio', '$order->data_termino')";
 
             $this->connection->query($sql);
         }catch(Exception $e){

@@ -7,7 +7,6 @@ function getDb(){
     try{
 
         $dbConfig= getDBConfig();
-        echo $dbConfig;
         $conn = new mysqli($dbConfig->servername,
                         $dbConfig->username,
                          $dbConfig->password, 

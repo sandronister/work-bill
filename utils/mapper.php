@@ -1,7 +1,7 @@
 <?php 
 
 require_once 'entity/order.php';
-require_once 'dto/order.dto.php';
+require_once 'dto/order.php';
 
 class OrderMapper {
 
