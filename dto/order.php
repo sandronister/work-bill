@@ -20,4 +20,14 @@ class OrderDTO {
         $this->data_termino = $data['data_termino'];
     }
 
+    public function getDataIni(){
+        $format = new DateTime($this->data_inicio);
+        return $format->format('d/m/Y');
+    }
+
+    public function getDatafim(){
+        $format = new DateTime($this->data_termino);
+        return $format->format('d/m/Y');
+    }
+
 }

@@ -46,7 +46,7 @@ class OrderService{
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }
-        return OrderMapper::EntityTODTO($entity);
+        return OrderMapper::EntityToDTO($entity);
     }   
 
     public function listAll(){

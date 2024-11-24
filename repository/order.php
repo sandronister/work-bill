@@ -48,7 +48,9 @@ class OrderRepository{
     public function find(int $id){
         try{
             $sql = "SELECT * FROM orders WHERE id = $id";
-            return $this->connection->query($sql);
+            $result =  $this->connection->query($sql);
+            $row = $result->fetch_assoc();
+            return $this->getOrderEntity($row);
         }catch(Exception $e){
             throw new Exception("Erro ao buscar a ordem". $e->getMessage());
         }
@@ -56,7 +58,7 @@ class OrderRepository{
 
     public function update(OrderEntity $order){
         try{
-            $sql = "UPDATE orders SET nome_cliente = '$order->nome', tipo_instrumento = '$order->tipo_instrumento', descricao = '$order->descricao', data_inicio = '$order->data_inicio', data_termino = '$order->data_termino' WHERE id = $order->id";
+            $sql = "UPDATE orders SET nome = '$order->nome', tipo = '$order->tipo_instrumento', descricao = '$order->descricao', data_inicio = '$order->data_inicio', data_fim = '$order->data_termino' WHERE id = $order->id";
             $this->connection->query($sql);
         }catch(Exception $e){
             throw new Exception("Erro ao atualizar a ordem". $e->getMessage());

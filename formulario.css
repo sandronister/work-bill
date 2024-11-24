@@ -51,6 +51,7 @@ input, select, textarea, button {
     border-radius: 5px;
 }
 
+
 /* Elementos de classe "grupo" nos estados das pseudoclasses "before" e "after" */
 .grupo:before, .grupo:after {
     display: table;
@@ -112,11 +113,9 @@ fieldset.grupo .campo {
     padding: 0.2em 0.6em;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
+    position: relative; /* Alterado de absolute para relative */
+    display: inline-block; /* Garante que os botões fiquem em linha */
+    margin-right: 10px; /* Adiciona espaço entre os botões */
 }
 
 /* Elemento de classe "botao" com o estado da pseudoclasse "hover" */

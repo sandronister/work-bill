@@ -21,6 +21,7 @@ class OrderController{
         
             try{
                $this->order_service->createOrder($order);
+                header("Location: list.php");
             }catch(Exception $e){
                 throw new Exception($e->getMessage());
             }
@@ -31,17 +32,26 @@ class OrderController{
     }
 
     public function update_order(){
+        if ($_SERVER["REQUEST_METHOD"]=="GET"){
+            $id = $_GET[ "id"];
+            $order=$this->order_service->getOrder($id);
+            return $order;
+        }
+        
+        if ($_SERVER["REQUEST_METHOD"]=="POST") {
             $order = new OrderDTO();
             $order->init($_POST);
-            $id=$_REQUEST["id"];
+            $id=$_POST["id"];
         
             try{
                $this->order_service->updateOrder($order,$id);
+               header("Location: list.php");
             }catch(Exception $e){
                 throw new Exception($e->getMessage());
             }
 
             return null;
+        }
        
     }
 

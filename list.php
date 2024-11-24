@@ -52,7 +52,7 @@ try {
                     <td><?php echo $order->sobrenome; ?></td>
                     <td><?php echo $order->tipo_instrumento; ?></td>
                     <td><?php echo $order->descricao; ?></td>
-                    <td><?php echo $order->data_termino; ?></td>
+                    <td><?php echo $order->getDatafim(); ?></td>
                     <td>
                         <button onclick="window.location.href='edit.php?id=<?php echo $order->id; ?>'">Editar</button>
                         <button onclick="window.location.href='delete.php?id=<?php echo $order->id; ?>'">Excluir</button>
