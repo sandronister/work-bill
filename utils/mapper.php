@@ -20,7 +20,7 @@ class OrderMapper {
         return $order;
     }
 
-    public static function EntityTODTO(OrderEntity $orderEntity): OrderDTO {
+    public static function EntityToDTO(OrderEntity $orderEntity): OrderDTO {
         $orderDTO = new OrderDTO();
         $orderDTO->id = $orderEntity->id;
         $orderDTO->nome = $orderEntity->nome;

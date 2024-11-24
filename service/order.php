@@ -50,16 +50,17 @@ class OrderService{
     }   
 
     public function listAll(){
-        $result=array();
+     
         try{
             $list=$this->orderRepository->listAll();
+            $result=new SplDoublyLinkedList();
             foreach($list as $order){
-                $result[]=OrderMapper::EntityTODTO($order);
+                $result->push(OrderMapper::EntityToDTO($order));
             }
+            return $result;
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }
-        return $result;
     }
             
 

@@ -33,7 +33,12 @@ class OrderRepository{
     public function listAll(){
         try{
             $sql = "SELECT * FROM orders";
-            return $this->connection->query($sql);
+            $result= $this->connection->query($sql);
+            $orders= new SplDoublyLinkedList();
+            while($row = $result->fetch_assoc()){
+              $orders->push($this->getOrderEntity($row));
+            }
+            return $orders;
         }catch(Exception $e){
             throw new Exception("Erro ao listas as ordens". $e->getMessage());
         }
@@ -50,10 +55,22 @@ class OrderRepository{
 
     public function update(OrderEntity $order){
         try{
-            $sql = "UPDATE orders SET nome_cliente = '$order->nome', tipo_instrumento = '$order->tipo_instrumento', descricao_servico = '$order->descricao', data_inicio = '$order->data_inicio', data_termino = '$order->data_termino' WHERE id = $order->id";
+            $sql = "UPDATE orders SET nome_cliente = '$order->nome', tipo_instrumento = '$order->tipo_instrumento', descricao = '$order->descricao', data_inicio = '$order->data_inicio', data_termino = '$order->data_termino' WHERE id = $order->id";
             $this->connection->query($sql);
         }catch(Exception $e){
             throw new Exception("Erro ao atualizar a ordem". $e->getMessage());
         }
+    }
+
+    private function getOrderEntity(mixed $row) : OrderEntity{
+        $entity = new OrderEntity();
+        $entity->id = $row["id"];
+        $entity->nome = $row["nome"];
+        $entity->sobrenome = $row["sobrenome"];
+        $entity->tipo_instrumento = $row["tipo"];
+        $entity->descricao = $row["descricao"];
+        $entity->data_inicio = $row["data_inicio"];
+        $entity->data_termino = $row["data_fim"];
+        return $entity;
     }
 }
