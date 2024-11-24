@@ -21,9 +21,10 @@ class OrderRepository{
         }
     }
 
-    public function delete(OrderEntity $order){
+    public function delete(int $id){
         try{
-            $sql = "DELETE FROM order WHERE id = $order->id";
+            $sql = "DELETE FROM orders WHERE id = $id";
+            echo $sql;
             $this->connection->query($sql);
         }catch(Exception $e){
             throw new Exception("Erro ao deletar a ordem: " . $e->getMessage());

@@ -35,7 +35,7 @@ class OrderService{
 
     public function deleteOrder(int $id){
         try{    
-            $this->deleteOrder($id);
+            $this->orderRepository->delete($id);
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }

@@ -1,6 +1,5 @@
 <?php
 
-
 require_once 'service/order.php';
 require_once 'dto/order.php';
 
@@ -32,7 +31,6 @@ class OrderController{
     }
 
     public function update_order(){
-        if ($_SERVER["REQUEST_METHOD"] == "PUT") {
             $order = new OrderDTO();
             $order->init($_POST);
             $id=$_REQUEST["id"];
@@ -44,12 +42,11 @@ class OrderController{
             }
 
             return null;
-        }
        
     }
 
     public function delete_order(){
-        if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+        
             $id=$_REQUEST["id"];
         
             try{
@@ -59,7 +56,7 @@ class OrderController{
             }
 
             return null;
-        }
+    
        
     }
 
