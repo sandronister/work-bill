@@ -2,6 +2,9 @@
 
 
 function getDBConfig(){
+    if (!file_exists('config.ini')){
+        throw new Exception('Arquivo de configuração não encontrado');
+    }
     $config= parse_ini_file(  'config.ini', true);
     return $config['database'];
 }
@@ -20,7 +23,7 @@ function getDb(): mysqli{
      
          
     } catch (Exception $e){
-       throw new Exception('Não foi possível conectar ao banco de dados');
+       throw new Exception($e->getMessage());
     }
 
     
