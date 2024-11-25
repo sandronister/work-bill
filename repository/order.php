@@ -6,7 +6,7 @@ class OrderRepository{
 
     private $connection;
 
-    public function __construct(&$connection){
+    public function __construct(mysqli &$connection){
         $this->connection = $connection;
     }
 

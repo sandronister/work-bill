@@ -6,7 +6,7 @@ function getDBConfig(){
     return $config['database'];
 }
 
-function getDb(){
+function getDb(): mysqli{
 
     try{
 
